@@ -1,313 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>writefocal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>writefocal | Instagram Carousels</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --text: #e6e8ef;
-      --muted: #a0a6ba;
-      --accent: #6c6dff;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body{
+font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+background:radial-gradient(1200px 600px at 10% 0%,#1a1f3a 0%,#0b0f1a 45%,#05070c 100%);
+color:#f1f3f6;
+line-height:1.6;
+}
 
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      background:
-        radial-gradient(
-          900px 520px at 50% 30%,
-          #1a1d2a 0%,
-          #121420 45%,
-          #0e1016 70%,
-          #0b0c10 100%
-        );
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+.container{max-width:1200px;margin:0 auto;padding:20px}
 
-    .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 64px 28px 80px;
-      position: relative;
-      z-index: 2;
-    }
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+margin-bottom:80px;
+}
 
-    header {
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
+.logo{font-size:24px;font-weight:700}
 
-    /* HERO */
+.btn{
+padding:12px 28px;
+border:1.5px solid rgba(255,255,255,0.25);
+background:transparent;
+color:#e5e7eb;
+border-radius:10px;
+font-size:15px;
+font-weight:500;
+text-decoration:none;
+transition:.25s ease;
+}
 
-    .hero {
-      margin-top: 140px;
-      max-width: 560px;
-    }
+.btn:hover{background:rgba(255,255,255,0.08)}
 
-    .hero h1 {
-      font-size: clamp(2.4rem, 4.8vw, 3.3rem);
-      line-height: 1.15;
-      letter-spacing: -0.04em;
-    }
+.btn-primary{
+background:#7c7cff;
+border:none;
+color:#fff;
+}
 
-    .highlight {
-      color: var(--accent);
-    }
+.btn-primary:hover{background:#6b6bf2}
 
-    .hero p {
-      margin-top: 22px;
-      font-size: 1.05rem;
-      color: var(--muted);
-    }
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+margin-bottom:120px;
+}
 
-    .features {
-      margin-top: 34px;
-      display: grid;
-      gap: 14px;
-    }
+.hero-content h1{
+font-family: Inter, system-ui, sans-serif;
+font-size: clamp(2.3rem, 4.4vw, 3.3rem);
+line-height: 1.15;
+letter-spacing: -0.045em;
+font-weight: 700;
+margin-bottom: 24px;
+}
 
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.95rem;
-    }
+.hero-features{
+margin-top:28px;
+margin-bottom:36px;
+display:flex;
+flex-direction:column;
+gap:14px;
+max-width:420px;
+}
 
-    .feature::before {
-      content: "✓";
-      color: var(--accent);
-      font-weight: 600;
-    }
+.feature{
+display:flex;
+align-items:flex-start;
+gap:10px;
+font-size:.95rem;
+line-height:1.4;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 46px;
-      padding: 14px 34px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #6c6dff, #8c8dff);
-      color: #0b0c10;
-      font-weight: 600;
-      box-shadow: 0 18px 50px rgba(108,109,255,0.4);
-      text-decoration: none;
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    }
+.feature::before{
+content:"✓";
+color:#6c6dff;
+font-weight:600;
+font-size:.9em;
+margin-top:.15em;
+}
 
-    .btn:hover {
-      background: linear-gradient(135deg, #5a5bdf, #7a7bff);
-      box-shadow: 0 14px 36px rgba(108,109,255,0.35);
-    }
+.step-sub{
+font-size:.95rem;
+color:#9ca3af;
+margin-top:6px;
+line-height:1.4;
+}
 
-    /* HERO IMAGE */
+.highlight{color:#6c6dff}
 
-    .hero-carousel {
-      position: absolute;
-      top: 50%;
-      right: -6vw;
-      transform: translateY(-50%) rotate(-8deg);
-      width: 70vw;
-      max-width: 1100px;
-      z-index: 1;
-      pointer-events: none;
-    }
+.hero-content p{
+font-size:18px;
+color:#c7cbd6;
+margin-bottom:32px;
+}
 
-    .hero-carousel img {
-      width: 100%;
-      height: auto;
-      filter:
-        drop-shadow(0 70px 140px rgba(0,0,0,0.7))
-        drop-shadow(0 0 70px rgba(108,109,255,0.2));
-    }
+.hero-visual{display:flex;justify-content:center}
 
-    /* HOW IT WORKS */
+/* ===== CAROUSEL ===== */
 
-    .how {
-      margin-top: 128px;
-      max-width: 1100px;
-    }
+.mockup-card{
+width:100%;
+max-width:400px;
+min-height:520px;
+background:#fff;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.45);
+overflow:hidden;
+display:flex;
+flex-direction:column;
+}
 
-    .how h2 {
-      font-size: 1.8rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 72px;
-    }
+.top-bar{display:flex;gap:12px;padding:18px 22px}
+.avatar{width:34px;height:34px;border-radius:50%;background:#d6d6d6}
+.username{height:12px;width:140px;border-radius:6px;background:#d6d6d6}
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 120px;
-      padding-left: 40px;
-    }
+.content{
+flex:1;
+padding:28px 22px;
+background:linear-gradient(135deg,rgba(70,120,210,.35),rgba(160,60,90,.3));
+}
 
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+.line{height:10px;border-radius:6px;background:rgba(0,0,0,.25);margin-bottom:14px}
+.line.full{width:100%}
+.line.medium{width:82%}
+.line.short{width:62%}
 
-    .step img {
-      width: 150px;
-      height: auto;
-      margin-bottom: 14px;
-      filter: drop-shadow(0 0 30px rgba(108,109,255,0.28));
-    }
+.block{margin-top:22px;height:90px;border-radius:14px;background:rgba(0,0,0,.22)}
 
-    .step-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
+.dots{display:flex;justify-content:center;gap:8px;padding:12px 0}
+.dot{width:6px;height:6px;border-radius:50%;background:#cfcfcf}
+.dot.active{background:#6f6f6f}
 
-    .step-desc {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.5;
-      max-width: 300px;
-      white-space: nowrap;
-    }
+.actions{display:flex;align-items:center;padding:16px 22px 20px}
+.left-actions{display:flex;gap:18px}
+.save-action{margin-left:auto}
+.actions svg{width:22px;height:22px;stroke:#111;fill:none;stroke-width:2}
+.actions .heart{fill:#e53935;stroke:none}
 
-    /* MOBILE */
+/* ===== HOW IT WORKS ===== */
 
-    @media (max-width: 900px) {
-      .hero-carousel {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: rotate(-5deg);
-        width: 92%;
-        max-width: 520px;
-        margin: 80px auto 0;
-      }
+.how-it-works{margin-bottom:120px}
 
-      .steps {
-        grid-template-columns: 1fr;
-        gap: 64px;
-        padding-left: 0;
-      }
+.how-it-works h2{
+font-size:1.8rem;
+letter-spacing:-.03em;
+font-weight:600;
+margin-bottom:48px;
+}
 
-      .step-desc {
-        white-space: normal;
-      }
-    }
+.steps{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:40px;
+}
 
-    /* CTA SECTION */
+.step{text-align:center}
 
-    .cta-wrap {
-      max-width: 1200px;
-      margin: 160px auto 0;
-      padding: 0 28px;
-    }
+.step-icon{
+width:80px;height:80px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto 20px;
+}
 
-    .cta-box {
-      background: linear-gradient(
-        180deg,
-        rgba(36,40,64,0.9),
-        rgba(24,26,44,0.9)
-      );
-      border-radius: 22px;
-      padding: 72px 64px;
-      text-align: center;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.06),
-        0 40px 120px rgba(0,0,0,0.6);
-    }
+.step-icon svg{width:85%;height:85%}
 
-    .cta-text {
-      font-size: 1.35rem;
-      line-height: 1.55;
-      max-width: 820px;
-      margin: 0 auto 42px;
-      color: var(--text);
-    }
+/* ===== CTA ===== */
 
-    .cta-footer {
-      text-align: center;
-      margin: 48px 0 64px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-  </style>
+.cta{
+text-align:center;
+padding:64px 32px;
+background:rgba(255,255,255,.06);
+border-radius:24px;
+margin-bottom:40px;
+}
+
+.cta p{
+font-size:20px;
+color:#c7cbd6;
+margin-bottom:32px;
+max-width:1100px;
+margin:0 auto 32px;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+.hero,.features{grid-template-columns:1fr}
+.steps{grid-template-columns:1fr}
+.cta p{font-size:18px}
+.step-sub{font-size:.9rem}
+}
+
+/* ===== FOOTER (ADDED) ===== */
+
+.footer-text{
+text-align:center;
+font-size:12px;
+color:#9ca3af;
+margin-top:60px;
+margin-bottom:20px;
+}
+</style>
 </head>
+
 <body>
+<div class="container">
 
-  <div class="hero-carousel">
-    <img src="carousel-b.png" alt="Instagram carousel">
+<header>
+<div class="logo">writefocal</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<h1>We handle Instagram <span class="highlight">carousels</span> for creators and coaches.</h1>
+<p>Turn raw ideas into clear, structured carousels that get read, saved, and shared.</p>
+<div class="hero-features">
+<div class="feature">Done-For-You</div>
+<div class="feature">Weekly Carousels</div>
+<div class="feature">End-to-End Handling</div>
+</div>
+<a href="mailto:vis@writefocal.com" class="btn btn-primary">Get in Touch</a>
+</div>
+
+<div class="hero-visual">
+<div class="mockup-card">
+<div class="top-bar">
+<div class="avatar"></div>
+<div class="username"></div>
+</div>
+<div class="content">
+<div class="line full"></div>
+<div class="line medium"></div>
+<div class="line short"></div>
+<div class="block"></div>
+</div>
+<div class="dots">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+<div class="actions">
+<div class="left-actions">
+<svg class="heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-10-9a6 6 0 0 1 10-6 6 6 0 0 1 10 6c-3 4.65-10 9-10 9z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M21 5H9a4 4 0 0 0-4 4"/><path d="M7 23l-4-4 4-4"/><path d="M3 19h12a4 4 0 0 0 4-4"/></svg>
+<svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+</div>
+<div class="save-action">
+<svg viewBox="0 0 24 24"><path d="M6 2h12v20l-6-4-6 4z"/></svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="how-it-works">
+<h2>How It Works</h2>
+<div class="steps">
+
+<div class="step">
+  <div class="step-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g transform="matrix(0.6,0,0,0.6,4.800021743774415,4.800000000000001)"><g fill="#000" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.25 4.5A2.25 2.25 0 0 1 4.5 2.25h15a2.25 2.25 0 0 1 2.25 2.25V12a.75.75 0 0 1-1.5 0V4.5a.75.75 0 0 0-.75-.75h-15a.75.75 0 0 0-.75.75v15c0 .414.336.75.75.75H12a.75.75 0 0 1 0 1.5H4.5a2.25 2.25 0 0 1-2.25-2.25z" fill="#6c6dff" opacity="1" data-original="#000000"></path><path d="M16 13.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5zM12.25 16a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0z" fill="#6c6dff" opacity="1" data-original="#000000"></path><path d="M17.914 17.532a.75.75 0 0 1 1.054-.118l2.5 2a.75.75 0 1 1-.937 1.172l-2.5-2a.75.75 0 0 1-.117-1.054zM6.25 8A.75.75 0 0 1 7 7.25h10a.75.75 0 0 1 0 1.5H7A.75.75 0 0 1 6.25 8zM6.25 12a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75z" fill="#6c6dff" opacity="1" data-original="#000000"></path></g></g></svg>
+</div>
+  <h3> 1. Content </h3>
+<p class="step-sub">We analyze your content style</p>
+</div>
+
+<div class="step">
+  <div class="step-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M426.801 159.925v-21.35H384.1v-21.351H127.9v21.351H85.2v21.35H42.5v149.45h42.7v21.35h42.7v21.351h256.2v-21.351h42.701v-21.35H469.5v-149.45zM85.2 288.025H63.85v-106.75H85.2zm42.7 21.35h-21.35v-149.45h21.35zm234.85 21.35h-213.5v-47.982c16.58-14.41 34.621-26.743 42.7-26.743 15.585 0 83.753 66.823 83.753 66.823l87.047-52.241zm0-85.033-83.795 50.276c-20.411-19.891-65.529-61.318-87.005-61.318-12.432 0-28.69 9.813-42.7 20.487V138.575h213.5zm42.7 63.683H384.1v-149.45h21.351v149.45zm42.7-21.35H426.8v-106.75h21.35zM266.676 384.1c0 5.9-4.775 10.676-10.676 10.676S245.325 390 245.325 384.1 250.1 373.425 256 373.425s10.676 4.774 10.676 10.675zm-64.051 0c0 5.9-4.774 10.676-10.675 10.676S181.275 390 181.275 384.1s4.774-10.675 10.675-10.675 10.675 4.774 10.675 10.675zm128.1 0c0 5.9-4.773 10.676-10.674 10.676S309.375 390 309.375 384.1s4.775-10.675 10.676-10.675 10.674 4.774 10.674 10.675zM277.35 245.325c23.582 0 42.701-19.099 42.701-42.7s-19.119-42.7-42.701-42.7c-23.58 0-42.699 19.099-42.699 42.7s19.119 42.7 42.699 42.7zm0-64.05c11.76 0 21.351 9.569 21.351 21.35s-9.591 21.35-21.351 21.35c-11.759 0-21.35-9.569-21.35-21.35s9.591-21.35 21.35-21.35z" fill="#6c6dff" opacity="1" data-original="#000000" class=""></path></g></svg>
   </div>
+  <h3> 2. Carousel </h3>
+<p class="step-sub"> Then craft carousels with images, caption, hooks  </p>
+</div>
 
-  <div class="wrap">
-    <header>writefocal</header>
+<div class="step">
+  <div class="step-icon">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g transform="matrix(0.5400000000000005,0,0,0.5400000000000005,117.75971879959096,117.7596674728392)"><path d="M492.45.822c-.242.077-.498-.029-.738.06l-480 180c-5.259 1.978-8.979 6.738-9.624 12.334s1.89 11.074 6.577 14.194l105.233 70.146 38.498 160.86c.101.423.361.76.496 1.166 3.46 10.553 16.749 13.903 24.699 5.953l75.306-75.306 115.768 77.181c8.388 5.625 19.952 1.426 22.749-8.364l120-420c3.222-11.304-7.389-21.94-18.964-18.224zM188.885 305.936c-2.484 2.516-3.232 4.555-4.103 7.727-.011.059-.037.114-.048.172l-16.738 60.861-23.848-99.653 232.325-159.302-187.588 190.195zM100.605 411.325c-5.859-5.859-15.352-5.86-21.211 0l-75 75c-5.859 5.859-5.859 15.352 0 21.211 5.86 5.86 15.351 5.86 21.211 0l75-75c5.859-5.859 5.859-15.352 0-21.211z" fill="#6c6dff" opacity="1" data-original="#000000" class=""></path><path d="M100.605 321.325c-5.859-5.859-15.352-5.86-21.211 0l-75 75c-5.859 5.859-5.859 15.352 0 21.211 5.86 5.86 15.351 5.86 21.211 0l75-75c5.859-5.859 5.859-15.352 0-21.211z" fill="#6c6dff" opacity="1" data-original="#000000" class=""></path></g></svg>
+</div>
+  <h3> 3. Publish </h3>
+<p class="step-sub">You get ready-to-post carousels</p>
+</div>
+</div>
+</section>
 
-    <section class="hero">
-      <h1>
-        Instagram carousels<br>
-        that <span class="highlight">earn attention</span>.
-      </h1>
 
-      <p>
-        We turn raw ideas into clear, structured Instagram carousels
-        that get read, saved, and shared.
-      </p>
+<section class="cta">
+<p>If carousels feel like something you should be doing but can’t keep up with, you’re at the right place.</p>
+<a href="mailto:vis@writefocal.com" class="btn btn-primary">Get in Touch</a>
+</section>
 
-      <div class="features">
-        <div class="feature">Done-for-you</div>
-        <div class="feature">Weekly carousels</div>
-        <div class="feature">End-to-end handling</div>
-      </div>
+<div class="footer-text">© writefocal</div>
 
-      <a href="mailto:vis@writefocal.com" class="btn">Get in Touch</a>
-    </section>
-
-    <section class="how">
-      <h2>How it works</h2>
-
-      <div class="steps">
-        <div class="step">
-          <img src="idea.png" alt="Idea">
-          <div class="step-title">You bring the idea</div>
-        </div>
-
-        <div class="step">
-          <img src="slide.png" alt="Carousel">
-          <div class="step-title">We build the carousel</div>
-          <div class="step-desc">hooks, pacing, copy</div>
-        </div>
-
-        <div class="step">
-          <img src="publish.png" alt="Publish">
-          <div class="step-title">You publish</div>
-          <div class="step-desc">
-            a carousel worthy of being shared & saved
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="cta-wrap">
-    <div class="cta-box">
-      <div class="cta-text">
-        If carousels feel like something you should be doing but can’t keep up with,<br>
-        you’re at the right place.
-      </div>
-
-      <a href="mailto:vis@writefocal.com" class="btn">Get in Touch</a>
-    </div>
-
-    <div class="cta-footer">© writefocal</div>
-  </div>
-
+</div>
 </body>
 </html>
